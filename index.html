@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carro GPS en Tiempo Real</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-o9N1j7kzE6kBj2w1A5tzgFx2+ZpQ0E1xv8GZh+Jm4r0="
+    crossorigin=""/>
+</head>
+<body>
+  <header>
+    <h1>Carro GPS en Tiempo Real</h1>
+    <button id="btnConnect">Conectar BLE</button>
+  </header>
+
+  <main>
+    <div id="map"></div>
+    <div id="info">
+      <p>Latitud: <span id="lat">--</span></p>
+      <p>Longitud: <span id="lon">--</span></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Proyecto GPS - Visualización Web</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9N1j7kzE6kBj2w1A5tzgFx2+ZpQ0E1xv8GZh+Jm4r0="
+    crossorigin=""></script>
+  <script src="script.js"></script>
+</body>
+</html>
