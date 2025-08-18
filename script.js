@@ -11,8 +11,13 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19
 }).addTo(map);
 
-// Marcador
-const marker = L.marker([lat, lon]).addTo(map)
+// Marcador con flecha de rumbo
+const arrowIcon = L.divIcon({
+    className: 'arrow-icon',
+    iconSize: [40, 40],
+    iconAnchor: [20, 20]
+});
+const marker = L.marker([lat, lon], {icon: arrowIcon}).addTo(map)
     .bindPopup('Carro GPS')
     .openPopup();
 
@@ -23,9 +28,10 @@ function actualizarInfo() {
     document.getElementById('rumbo').innerText = `Rumbo: ${rumbo.toFixed(1)}°`;
 }
 
-// Función para mover marcador
+// Función para mover marcador y girar flecha
 function actualizarPosicion() {
     marker.setLatLng([lat, lon]);
+    marker.getElement().style.transform = `rotate(${rumbo}deg)`;
     actualizarInfo();
 }
 
@@ -42,8 +48,8 @@ let rxCharacteristic;
 document.getElementById("connectBLE").addEventListener("click", async () => {
     try {
         bluetoothDevice = await navigator.bluetooth.requestDevice({
-            filters: [{ namePrefix: "MLT-BT05" }], // cambia el nombre según tu módulo
-            optionalServices: [0xFFE0]            // servicio UART típico
+            filters: [{ namePrefix: "MLT-BT05" }],
+            optionalServices: [0xFFE0]
         });
 
         const server = await bluetoothDevice.gatt.connect();
@@ -63,11 +69,11 @@ document.getElementById("connectBLE").addEventListener("click", async () => {
 // Manejar datos entrantes del Arduino
 function manejarDatos(event) {
     const decoder = new TextDecoder("utf-8");
-    const value = decoder.decode(event.target.value);
+    const value = decoder.decode(event.target.value).trim();
     console.log("Datos recibidos:", value);
 
     // Espera datos en formato: LAT,LON,RUMBO
-    const partes = value.trim().split(",");
+    const partes = value.split(",");
     if (partes.length === 3) {
         const nuevaLat = parseFloat(partes[0]);
         const nuevaLon = parseFloat(partes[1]);
@@ -79,10 +85,10 @@ function manejarDatos(event) {
             rumbo = nuevoRumbo;
 
             actualizarPosicion();
-            map.panTo([lat, lon]);
         }
     }
 }
 
 // Inicializar pantalla
 actualizarInfo();
+actualizarPosicion();
