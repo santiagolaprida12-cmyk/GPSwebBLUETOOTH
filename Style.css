@@ -71,3 +71,11 @@ footer {
     color:#ecf0f1;
     font-size:0.8em;
 }
+
+/* Flecha de rumbo */
+.arrow-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,0,0,0.7);
+    clip-path: polygon(50% 0%, 100% 100%, 50% 75%, 0% 100%);
+}
