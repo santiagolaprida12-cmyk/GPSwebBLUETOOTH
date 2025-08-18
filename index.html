@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monitoreo GPS Carro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- CSS propio -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Panel lateral -->
+    <aside id="sidebar">
+      <h1>Monarca GPS</h1>
+
+      <div class="info-row">
+        <div><strong>Lat:</strong> <span id="latVal">--</span></div>
+        <div><strong>Lon:</strong> <span id="lonVal">--</span></div>
+        <div><strong>Rumbo:</strong> <span id="rumboVal">--°</span></div>
+      </div>
+
+      <div class="btn-group">
+        <button id="connectBLE">🔗 Conectar BLE</button>
+        <button id="btnTest">TEST</button>
+        <button id="btnCheckGPS">CHECK GPS</button>
+        <button id="btnClear">🧹 Limpiar TEST</button>
+      </div>
+
+      <!-- Formulario de envío de coordenadas -->
+      <h2>Control Automático</h2>
+      <div class="control-group">
+        <label>Latitud: <input type="number" step="0.000001" id="inputLat" placeholder="-34.4052646"></label>
+        <label>Longitud: <input type="number" step="0.000001" id="inputLon" placeholder="-59.8514714"></label>
+        <button id="btnEnviarCoords">Enviar Coordenadas</button>
+      </div>
+
+      <!-- Formulario PID -->
+      <h2>PID</h2>
+      <div class="control-group">
+        <label>Kp: <input type="number" step="0.01" id="inputKp" placeholder="2.0"></label>
+        <label>Ki: <input type="number" step="0.01" id="inputKi" placeholder="0.05"></label>
+        <label>Kd: <input type="number" step="0.01" id="inputKd" placeholder="0.5"></label>
+        <button id="btnEnviarPID">Actualizar PID</button>
+      </div>
+
+      <h2>Panel TEST</h2>
+      <div id="testOutput" aria-live="polite">Esperando datos…</div>
+    </aside>
+
+    <!-- Mapa ocupa todo el resto -->
+    <main id="map"></main>
+  </div>
+
+  <!-- Leaflet -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- JS propio -->
+  <script src="script.js"></script>
+</body>
+</html>
