@@ -2,13 +2,33 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Monitoreo GPS</title>
+    <title>Monitoreo GPS Carro</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
-    <h1>Monitoreo GPS Carro</h1>
-    <div id="map"></div>
+    <header>
+        <h1>Monitoreo GPS Carro</h1>
+        <div id="info">
+            <span id="lat">Lat: --</span>
+            <span id="lon">Lon: --</span>
+            <span id="rumbo">Rumbo: --°</span>
+        </div>
+    </header>
+
+    <main>
+        <div id="map"></div>
+        <div id="controls">
+            <button id="zoomIn"><i class="fas fa-search-plus"></i></button>
+            <button id="zoomOut"><i class="fas fa-search-minus"></i></button>
+            <button id="center"><i class="fas fa-crosshairs"></i></button>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Monarca GPS</p>
+    </footer>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script>
