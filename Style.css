@@ -2,15 +2,15 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
     width: 100%;
+    height: 100%;
     font-family: 'Arial', sans-serif;
 }
 
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh; /* altura total de la ventana */
+    height: 100vh;
 }
 
 /* Header */
@@ -19,7 +19,7 @@ header {
     color: #ecf0f1;
     padding: 15px;
     text-align: center;
-    flex-shrink: 0; /* no se encoge */
+    flex-shrink: 0;
 }
 
 header h1 {
@@ -52,15 +52,20 @@ header h1 {
 
 /* Main y mapa */
 main {
-    flex: 1; /* ocupa todo el espacio entre header y footer */
+    flex: 1;
     display: flex;
     position: relative;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
 }
 
 #map {
-    flex: 1; /* ocupa todo el espacio del main */
+    flex: 1;
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* Controles flotantes */
