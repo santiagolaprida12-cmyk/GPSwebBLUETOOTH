@@ -21,6 +21,9 @@ const marker = L.marker([lat, lon], {icon: arrowIcon}).addTo(map)
     .bindPopup('Carro GPS')
     .openPopup();
 
+// Forzar que Leaflet recalibre tamaño
+map.invalidateSize();
+
 // Actualizar panel de info
 function actualizarInfo() {
     document.getElementById('lat').innerText = `Lat: ${lat.toFixed(6)}`;
@@ -31,7 +34,8 @@ function actualizarInfo() {
 // Función para mover marcador y girar flecha
 function actualizarPosicion() {
     marker.setLatLng([lat, lon]);
-    marker.getElement().style.transform = `rotate(${rumbo}deg)`;
+    const markerEl = marker.getElement();
+    if (markerEl) markerEl.style.transform = `rotate(${rumbo}deg)`;
     actualizarInfo();
 }
 
@@ -85,6 +89,7 @@ function manejarDatos(event) {
             rumbo = nuevoRumbo;
 
             actualizarPosicion();
+            map.panTo([lat, lon]);
         }
     }
 }
